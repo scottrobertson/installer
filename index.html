@@ -110,8 +110,13 @@
                 </div>
                 <div class="span9">
                     <div class="well">
+
+                        <div id="none_selected">
+                            <h1 class="lead">Welcome to Installer</h1>
+                            <p class="alert">Please use the options to the left to start</p>
+                        </div>
                         
-                        <div style="background:#fff; padding:10px; border-radius:5px; border: 1px dashed #ccc">
+                        <div id="installer" style="background:#fff; padding:10px; border-radius:5px; border: 1px dashed #ccc; display:none">
                             <div id="nginx-source" style="display:none">
                                 # Update Nginx Sources<br />
                                 wget http://nginx.org/keys/nginx_signing.key<br />
@@ -124,55 +129,48 @@
                             # Update apt<br />
                             apt-get update<br /><br />
 
+                            # Run the install<br />
+                            apt-get install -y
                             <!-- Server Software -->
-                            <div id="nginx-install" style="display:none">
-                                # Install Nginx<br />
-                                apt-get install nginx -y<br /><br />
+                            <span id="nginx-install" style="display:none">
+                                 nginx
+                            </span>
 
-                            </div><div id="apache2-install" style="display:none">
-                                # Install Apache2<br />
-                                apt-get install apache2 -y<br /><br />
-                            </div>
+                            <span id="apache2-install" style="display:none">
+                                 apache2
+                            </span>
 
-                            <div id="php5-install" style="display:none">
-                                # Install PHP 5<br />
-                                apt-get install php5 -y<br /><br />
-                            </div>
+                            <span id="php5-install" style="display:none">
+                                 php5
+                            </span>
 
-                            <div id="mysql-server-install" style="display:none">
-                                # Install MySQL Server<br />
-                                apt-get install mysql-server -y<br /><br />
-                            </div>
+                            <span id="mysql-server-install" style="display:none">
+                                 mysql-server
+                            </span>
 
-                            <div id="memcached-install" style="display:none">
-                                # Install Memcached<br />
-                                apt-get install memcached -y<br /><br />
-                            </div>
+                            <span id="memcached-install" style="display:none">
+                                 memcached
+                            </span>
 
-                            <div id="php-apc-install" style="display:none">
-                                # Install PHP APC<br />
-                                apt-get install php-apc -y<br /><br />
-                            </div>
+                            <span id="php-apc-install" style="display:none">
+                                 php-apc
+                            </span>
 
-                            <div id="php-memcache-install" style="display:none">
-                                # Install PHP Memcache<br />
-                                apt-get install php5-memcache -y<br /><br />
-                            </div>
+                            <span id="php-memcache-install" style="display:none">
+                                 php5-memcache
+                            </span>
 
-                            <div id="php-mysql-install" style="display:none">
-                                # Install PHP MySQL<br />
-                                apt-get install php5-mysql -y<br /><br />
-                            </div>
+                            <span id="php-mysql-install" style="display:none">
+                                 php5-mysql
+                            </span>
 
-                            <div id="php-gd-install" style="display:none">
-                                # Install PHP GD<br />
-                                apt-get install php5-gd -y<br /><br />
-                            </div>
+                            <span id="php-gd-install" style="display:none">
+                                 php5-gd
+                            </span>
 
-                            <div id="php-curl-install" style="display:none">
-                                # Install PHP Curl<br />
-                                apt-get install php5-curl -y<br /><br />
-                            </div>
+                            <span id="php-curl-install" style="display:none">
+                                 php5-curl
+                            </span>
 
                         </div>
 
@@ -189,11 +187,30 @@
        
         <script>
         $(document).ready(function() {
+
+            var selectedInstalls = 0;
+
             $('input[type=checkbox]').on('change', function() {
                 var elements = $(this).data('parts').split(',');
                 $.each(elements, function(index, value) {
                     $('#' + value).toggle();
                 });
+
+                if (this.checked) {
+                    selectedInstalls++;
+                } else {
+                    selectedInstalls--;
+                }
+
+
+                if (selectedInstalls > 0) {
+                    $('#installer').show();
+                    $('#none_selected').hide();
+                } else {
+                    $('#installer').hide();
+                    $('#none_selected').show();
+                }
+
             });
         });
         </script>
