@@ -71,32 +71,46 @@
                         <p>
                             <b>Server Software</b>
                             <label class="checkbox">
-                               PHP 5 <input data-parts="php5-install" type="checkbox">
+                               PHP 5 <input data-parts="php5-install,php-extensions" type="checkbox">
                             </label> 
 
                             <label class="checkbox">
-                               MySQL Server <input data-parts="mysql-server-install" type="checkbox">
+                               MySQL Server <input data-parts="mysql-server-install,php-mysql" type="checkbox">
                             </label>
 
                             <label class="checkbox">
-                               Memcached <input data-parts="memcached-install" type="checkbox">
+                               Memcached <input data-parts="memcached-install,php-memcache" type="checkbox">
+                            </label>
+
+                            <label class="checkbox">
+                               MongoDB <input data-parts="mongodb-source,mongodb-install,php-mongodb" type="checkbox">
                             </label>
                         </p>
 
-                        <p>
+                        <p id="php-extensions" style="display:none">
                             <b>PHP Extensions</b>
 
                             <label class="checkbox">
                                APC <input data-parts="php-apc-install" type="checkbox">
                             </label> 
 
-                            <label class="checkbox">
-                               Memcache <input data-parts="php-memcache-install" type="checkbox">
-                            </label> 
+                            <span style="display:none" id="php-mysql">
+                                <label class="checkbox">
+                                   MySQL <input data-parts="php-mysql-install" type="checkbox">
+                                </label> 
+                            </span>
 
-                             <label class="checkbox">
-                               MySQL <input data-parts="php-mysql-install" type="checkbox">
-                            </label> 
+                            <span style="display:none" id="php-memcache">
+                                <label class="checkbox">
+                                   Memcache <input data-parts="php-memcache-install" type="checkbox">
+                                </label> 
+                            </span>
+
+                            <span style="display:none" id="php-mongodb">
+                                <label class="checkbox">
+                                   MongoDB <input data-parts="php-mongodb-install" type="checkbox">
+                                </label> 
+                            </span>
 
                             <label class="checkbox">
                                GD <input data-parts="php-gd-install" type="checkbox">
@@ -123,7 +137,12 @@
                                 apt-key add nginx_signing.key<br />
                                 echo "deb http://nginx.org/packages/ubuntu/ precise nginx<br />
                                 deb-src http://nginx.org/packages/ubuntu/ precise nginx" > /etc/apt/sources.list.d/nginx.list<br /><br />
-                                
+                            </div>
+
+                            <div id="mongodb-source" style="display:none">
+                                # Update MongoDB Sources<br />
+                                sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10<br />
+                                echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list<br /><br />
                             </div>
 
                             # Update apt<br />
@@ -152,12 +171,24 @@
                                  memcached
                             </span>
 
+                            <span id="mongodb-install" style="display:none">
+                                 mongodb-10gen
+                            </span>
+
+                            <span id="php5-install" style="display:none">
+                                 php5
+                            </span>
+
                             <span id="php-apc-install" style="display:none">
                                  php-apc
                             </span>
 
                             <span id="php-memcache-install" style="display:none">
                                  php5-memcache
+                            </span>
+
+                            <span id="php-mongodb-install" style="display:none">
+                                 php5-mongo
                             </span>
 
                             <span id="php-mysql-install" style="display:none">
@@ -202,7 +233,6 @@
                     selectedInstalls--;
                 }
 
-
                 if (selectedInstalls > 0) {
                     $('#installer').show();
                     $('#none_selected').hide();
@@ -210,7 +240,6 @@
                     $('#installer').hide();
                     $('#none_selected').show();
                 }
-
             });
         });
         </script>
