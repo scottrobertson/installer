@@ -230,20 +230,23 @@
 
                             <!-- Apache Mods -->
                             <span id="apache-modules-install" style="display:none">
+
+                                <span id="a2enmod" style="display:none">a2enmod</span>
+
                                 <span id="apache-rewrite-install" style="display:none">
-                                     a2enmod rewrite<br />
+                                     rewrite
                                 </span>
 
                                 <span id="apache-deflate-install" style="display:none">
-                                     a2enmod deflate<br />
+                                      deflate
                                 </span>
 
                                 <span id="apache-headers-install" style="display:none">
-                                     a2enmod headers<br />
+                                      headers
                                 </span>
 
                                 <span id="apache-expires-install" style="display:none">
-                                     a2enmod expires<br />
+                                      expires
                                 </span>
                             </span>
 
@@ -285,6 +288,16 @@
                     $('#installer').hide();
                     $('#none_selected').show();
                 }
+
+                var a2enmods = $('#apache-modules-install span:visible').not('#a2enmod').length;
+
+                if (a2enmods > 0) {
+                    $('#a2enmod').show();
+                } else {
+                    $('#a2enmod').hide();
+                }
+            
+
             });
         });
         </script>
