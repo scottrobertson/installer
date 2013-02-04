@@ -7,7 +7,7 @@
             Installer
         </title>
         
-        <link href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/cosmo/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -17,6 +17,7 @@
         <![endif]-->
 
         <style>
+
         .ribbon {
             background-color: #a00;
             overflow: hidden;
@@ -48,6 +49,17 @@
 
         .navbar .brand:hover {
             color: #f09609;
+        }
+
+        .navbar .navbar-inner {
+            border-radius: 0px
+        }
+
+        #installer {
+            background:#fff; 
+            padding:10px; 
+            border-radius:5px; 
+            border: 1px dashed #ccc;
         }
         </style>
 
@@ -105,15 +117,15 @@
                             </label> 
 
                             <label class="checkbox">
-                               MySQL Server <input data-parts="mysql-server-install,php-mysql" type="checkbox">
+                               MySQL Server <input data-parts="mysql-server-install" type="checkbox">
                             </label>
 
                             <label class="checkbox">
-                               Memcached <input data-parts="memcached-install,php-memcache" type="checkbox">
+                               Memcached <input data-parts="memcached-install" type="checkbox">
                             </label>
 
                             <label class="checkbox">
-                               MongoDB <input data-parts="mongodb-source,mongodb-install,php-mongodb" type="checkbox">
+                               MongoDB <input data-parts="mongodb-source,mongodb-install" type="checkbox">
                             </label>
                         </p>
 
@@ -124,23 +136,17 @@
                                APC <input data-parts="php-apc-install" type="checkbox">
                             </label> 
 
-                            <span style="display:none" id="php-mysql">
-                                <label class="checkbox">
-                                   MySQL <input data-parts="php-mysql-install" type="checkbox">
-                                </label> 
-                            </span>
+                            <label class="checkbox">
+                               MySQL <input data-parts="php-mysql-install" type="checkbox">
+                            </label> 
 
-                            <span style="display:none" id="php-memcache">
-                                <label class="checkbox">
-                                   Memcache <input data-parts="php-memcache-install" type="checkbox">
-                                </label> 
-                            </span>
+                            <label class="checkbox">
+                               Memcache <input data-parts="php-memcache-install" type="checkbox">
+                            </label> 
 
-                            <span style="display:none" id="php-mongodb">
-                                <label class="checkbox">
-                                   MongoDB <input data-parts="php-mongodb-install" type="checkbox">
-                                </label> 
-                            </span>
+                            <label class="checkbox">
+                               MongoDB <input data-parts="php-mongodb-install" type="checkbox">
+                            </label> 
 
                             <label class="checkbox">
                                GD <input data-parts="php-gd-install" type="checkbox">
@@ -162,18 +168,28 @@
                             <label class="checkbox">
                                Curl <input data-parts="misc-curl-install" type="checkbox">
                             </label> 
+
+                            <label class="checkbox">
+                               g++ <input data-parts="misc-g-install" type="checkbox">
+                            </label> 
                         </p>
-                    </div>
+                    </div> 
                 </div>
                 <div class="span9">
                     <div class="well">
 
                         <div id="none_selected">
-                            <h1 class="lead">Welcome to Installer</h1>
-                            <p class="alert">To get started, please select some options on the left.</p>
+                            <h1 class="lead">Installer</h1>
+                            <p>
+                                Get started by selection some options on the left. A script will then be generated for you to install all of the software quickly and easily.
+                            </p>
+
+
+                            <p class="alert alert-danger">This tool has only been tested on Ubuntu 12.04 and upwards. If you have any issues please <a href="mailto:scottymeuk@gmail.com">contact me</a>.</p>
+                           
                         </div>
                         
-                        <div id="installer" style="background:#fff; padding:10px; border-radius:5px; border: 1px dashed #ccc; display:none">
+                        <div id="installer" style="display:none">
 
                             <div id="nginx-source" style="display:none">
                                 # Update Nginx Sources<br />
@@ -261,6 +277,10 @@
 
                             <span id="misc-curl-install" style="display:none">
                                  curl
+                            </span>
+
+                            <span id="misc-g-install" style="display:none">
+                                 g++
                             </span>
 
                             <!-- Apache Mods -->
