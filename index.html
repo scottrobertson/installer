@@ -59,8 +59,9 @@
             background:#fff; 
             padding:10px; 
             border-radius:5px; 
-            border: 1px dashed #ccc;
+            box-shadow:inset 0 0 1px #000000;
         }
+
         </style>
 
     </head>
@@ -122,7 +123,11 @@
                             <p>
                                 <b>Server Software</b>
                                 <label class="checkbox">
-                                   PHP 5 <input data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
+                                   PHP <input data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
+                                </label> 
+
+                                <label class="checkbox">
+                                   Python <input data-parts="python-install,python-packages,python-packages-install" type="checkbox">
                                 </label> 
 
                                 <label class="checkbox">
@@ -164,6 +169,14 @@
                                 <label class="checkbox">
                                    Curl <input data-parts="php-curl-install" type="checkbox">
                                 </label> 
+                            </p>
+
+                            <p id="python-packages" style="display:none">
+                                <b>Python Packages</b>
+
+                                <label class="checkbox">
+                                   virtualenv <input data-parts="python-virtualenv-install" type="checkbox">
+                                </label>     
                             </p>
 
                             <p>
@@ -208,7 +221,7 @@
 
                             <div id="mongodb-source" style="display:none">
                                 # Update MongoDB Sources<br />
-                                sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10<br />
+                                apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10<br />
                                 echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list<br /><br />
                             </div>
 
@@ -244,6 +257,10 @@
 
                             <span id="php5-install" style="display:none">
                                  php5
+                            </span>
+
+                            <span id="python-install" style="display:none">
+                                 python python-pip
                             </span>
 
                             <!-- PHP Extensions -->
@@ -288,6 +305,14 @@
 
                             <span id="misc-g-install" style="display:none">
                                  g++
+                            </span>
+
+                            <!-- Python Packages -->
+                            <span id="python-packages-install" style="display:none">
+                                <br /><br />
+                                <span id="python-virtualenv-install" style="display:none">
+                                     pip install virtualenv 
+                                </span>
                             </span>
 
                             <!-- Apache Mods -->
