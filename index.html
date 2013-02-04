@@ -80,99 +80,109 @@
                 <div class="span3">
                     <div class="well sidebar-nav">
                         <p>
-                            <b>Web Server</b>
-                            <label class="checkbox">
-                               Apache2 <input data-parts="apache2-install,apache-modules,apache-modules-install" type="checkbox">
-                            </label> 
-
-                            <label class="checkbox">
-                               Nginx <input data-parts="nginx-source,nginx-install" type="checkbox">
-                            </label>
+                            <b>Ubuntu Version</b>
+                            <br />
+                            <input type="radio" name="version" value="12.04"> 12.04<br>
+                            <input type="radio" name="version" value="12.10"> 12.10
                         </p>
 
-                        <p id="apache-modules" style="display:none">
-                            <b>Apache Modules</b>
+                        <div id="options" style="display:none">
 
-                            <label class="checkbox">
-                               Rewrite <input data-parts="apache-rewrite-install" type="checkbox">
-                            </label> 
+                            <p>
+                                <b>Web Server</b>
+                                <label class="checkbox">
+                                   Apache2 <input data-parts="apache2-install,apache-modules,apache-modules-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               Deflate <input data-parts="apache-deflate-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   Nginx <input data-parts="nginx-source,nginx-install" type="checkbox">
+                                </label>
+                            </p>
 
-                            <label class="checkbox">
-                               Headers <input data-parts="apache-headers-install" type="checkbox">
-                            </label> 
+                            <p id="apache-modules" style="display:none">
+                                <b>Apache Modules</b>
 
-                            <label class="checkbox">
-                               Expires <input data-parts="apache-expires-install" type="checkbox">
-                            </label> 
-                        </p>
+                                <label class="checkbox">
+                                   Rewrite <input data-parts="apache-rewrite-install" type="checkbox">
+                                </label> 
 
-                        <p>
-                            <b>Server Software</b>
-                            <label class="checkbox">
-                               PHP 5 <input data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   Deflate <input data-parts="apache-deflate-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               MySQL Server <input data-parts="mysql-server-install" type="checkbox">
-                            </label>
+                                <label class="checkbox">
+                                   Headers <input data-parts="apache-headers-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               Memcached <input data-parts="memcached-install" type="checkbox">
-                            </label>
+                                <label class="checkbox">
+                                   Expires <input data-parts="apache-expires-install" type="checkbox">
+                                </label> 
+                            </p>
 
-                            <label class="checkbox">
-                               MongoDB <input data-parts="mongodb-source,mongodb-install" type="checkbox">
-                            </label>
-                        </p>
+                            <p>
+                                <b>Server Software</b>
+                                <label class="checkbox">
+                                   PHP 5 <input data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
+                                </label> 
 
-                        <p id="php-extensions" style="display:none">
-                            <b>PHP Extensions</b>
+                                <label class="checkbox">
+                                   MySQL Server <input data-parts="mysql-server-install" type="checkbox">
+                                </label>
 
-                            <label class="checkbox">
-                               APC <input data-parts="php-apc-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   Memcached <input data-parts="memcached-install" type="checkbox">
+                                </label>
 
-                            <label class="checkbox">
-                               MySQL <input data-parts="php-mysql-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   MongoDB <input data-parts="mongodb-source,mongodb-install" type="checkbox">
+                                </label>
+                            </p>
 
-                            <label class="checkbox">
-                               Memcache <input data-parts="php-memcache-install" type="checkbox">
-                            </label> 
+                            <p id="php-extensions" style="display:none">
+                                <b>PHP Extensions</b>
 
-                            <label class="checkbox">
-                               MongoDB <input data-parts="php-mongodb-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   APC <input data-parts="php-apc-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               GD <input data-parts="php-gd-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   MySQL <input data-parts="php-mysql-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               Curl <input data-parts="php-curl-install" type="checkbox">
-                            </label> 
-                        </p>
+                                <label class="checkbox">
+                                   Memcache <input data-parts="php-memcache-install" type="checkbox">
+                                </label> 
 
-                        <p>
-                            <b>Miscellaneous</b>
-                            <label class="checkbox">
-                               Zip <input data-parts="misc-zip-install" type="checkbox">
-                            </label> 
-                            <label class="checkbox">
-                               Make <input data-parts="misc-make-install" type="checkbox">
-                            </label> 
-                            <label class="checkbox">
-                               Curl <input data-parts="misc-curl-install" type="checkbox">
-                            </label> 
+                                <label class="checkbox">
+                                   MongoDB <input data-parts="php-mongodb-install" type="checkbox">
+                                </label> 
 
-                            <label class="checkbox">
-                               g++ <input data-parts="misc-g-install" type="checkbox">
-                            </label> 
-                        </p>
+                                <label class="checkbox">
+                                   GD <input data-parts="php-gd-install" type="checkbox">
+                                </label> 
+
+                                <label class="checkbox">
+                                   Curl <input data-parts="php-curl-install" type="checkbox">
+                                </label> 
+                            </p>
+
+                            <p>
+                                <b>Miscellaneous</b>
+                                <label class="checkbox">
+                                   Zip <input data-parts="misc-zip-install" type="checkbox">
+                                </label> 
+                                <label class="checkbox">
+                                   Make <input data-parts="misc-make-install" type="checkbox">
+                                </label> 
+                                <label class="checkbox">
+                                   Curl <input data-parts="misc-curl-install" type="checkbox">
+                                </label> 
+
+                                <label class="checkbox">
+                                   g++ <input data-parts="misc-g-install" type="checkbox">
+                                </label> 
+                            </p>
+                        </div>
                     </div> 
                 </div>
                 <div class="span9">
@@ -181,11 +191,8 @@
                         <div id="none_selected">
                             <h1 class="lead">Installer</h1>
                             <p>
-                                Get started by selection some options on the left. A script will then be generated for you to install all of the software quickly and easily.
+                                Easily install all the software you need on your Ubuntu server. To get started, please select your ubuntu version.
                             </p>
-
-
-                            <p class="alert alert-danger">This tool has only been tested on Ubuntu 12.04 and upwards. If you have any issues please <a href="mailto:scottymeuk@gmail.com">contact me</a>.</p>
                            
                         </div>
                         
@@ -195,8 +202,8 @@
                                 # Update Nginx Sources<br />
                                 wget http://nginx.org/keys/nginx_signing.key<br />
                                 apt-key add nginx_signing.key<br />
-                                echo "deb http://nginx.org/packages/ubuntu/ precise nginx<br />
-                                deb-src http://nginx.org/packages/ubuntu/ precise nginx" > /etc/apt/sources.list.d/nginx.list<br /><br />
+                                echo "deb http://nginx.org/packages/ubuntu/ <span class="ubuntu-branch"></span> nginx<br />
+                                deb-src http://nginx.org/packages/ubuntu/ <span class="ubuntu-branch"></span> nginx" > /etc/apt/sources.list.d/nginx.list<br /><br />
                             </div>
 
                             <div id="mongodb-source" style="display:none">
@@ -325,6 +332,20 @@
         $(document).ready(function() {
 
             var selectedInstalls = 0;
+
+            $('input[type=radio]').on('click', function() {
+
+                $('#options').fadeIn();
+                
+                var version = $(this).val();
+
+                if (version === '12.04') {
+                    $('.ubuntu-branch').text('precise');
+                } else {
+                    $('.ubuntu-branch').text('quantal');
+                }
+
+            });
 
             $('input[type=checkbox]').on('change', function() {
                 var elements = $(this).data('parts').split(',');
