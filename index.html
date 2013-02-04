@@ -39,6 +39,16 @@
             text-decoration: none;
             text-shadow: 0 0 0.5em #444;
         }
+
+        .navbar .brand {
+           transition: color .25s ease-in-out;
+           -moz-transition: color .25s ease-in-out;
+           -webkit-transition: color .25s ease-in-out;
+        }
+
+        .navbar .brand:hover {
+            color: #f09609;
+        }
         </style>
 
     </head>
@@ -47,7 +57,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     <div class="pull-right">
-                        <a class="brand" href="/">Installer</a>
+                        <a class="brand" href="/"><i class="icon-cloud-download"></i> Installer</a>
                     </div>
                 </div>
             </div>
@@ -140,6 +150,19 @@
                                Curl <input data-parts="php-curl-install" type="checkbox">
                             </label> 
                         </p>
+
+                        <p>
+                            <b>Miscellaneous</b>
+                            <label class="checkbox">
+                               Zip <input data-parts="misc-zip-install" type="checkbox">
+                            </label> 
+                            <label class="checkbox">
+                               Make <input data-parts="misc-make-install" type="checkbox">
+                            </label> 
+                            <label class="checkbox">
+                               Curl <input data-parts="misc-curl-install" type="checkbox">
+                            </label> 
+                        </p>
                     </div>
                 </div>
                 <div class="span9">
@@ -147,10 +170,11 @@
 
                         <div id="none_selected">
                             <h1 class="lead">Welcome to Installer</h1>
-                            <p class="alert">Please use the options to the left to start</p>
+                            <p class="alert">To get started, please select an some options on the left.</p>
                         </div>
                         
                         <div id="installer" style="background:#fff; padding:10px; border-radius:5px; border: 1px dashed #ccc; display:none">
+
                             <div id="nginx-source" style="display:none">
                                 # Update Nginx Sources<br />
                                 wget http://nginx.org/keys/nginx_signing.key<br />
@@ -226,6 +250,19 @@
                                 </span>
                             </span>
 
+                            <!-- Miscellaneous -->
+                            <span id="misc-zip-install" style="display:none">
+                                 zip
+                            </span>
+
+                            <span id="misc-make-install" style="display:none">
+                                 make
+                            </span>
+
+                            <span id="misc-curl-install" style="display:none">
+                                 curl
+                            </span>
+
                             <!-- Apache Mods -->
                             <span id="apache-modules-install" style="display:none">
 
@@ -251,8 +288,6 @@
                                       expires
                                 </span>
                             </span>
-
-
                         </div>
 
                     </div>
