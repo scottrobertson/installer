@@ -96,7 +96,7 @@
                                 </label> 
 
                                 <label class="checkbox">
-                                   Nginx <input data-parts="nginx-source,nginx-install" type="checkbox">
+                                   Nginx <input id="nginx" data-callback="installer.php" data-parts="nginx-source,nginx-install" type="checkbox">
                                 </label>
                             </p>
 
@@ -123,7 +123,7 @@
                             <p>
                                 <b>Server Software</b>
                                 <label class="checkbox">
-                                   PHP <input data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
+                                   PHP <input id="php" data-callback="installer.php" data-parts="php5-install,php-extensions,php-extensions-install" type="checkbox">
                                 </label> 
 
                                 <label class="checkbox">
@@ -257,6 +257,10 @@
 
                             <span id="php5-install" style="display:none">
                                  php5
+                            </span>
+
+                            <span id="php5-fpm-install" style="display:none">
+                                 php5-fpm
                             </span>
 
                             <span id="python-install" style="display:none">
@@ -399,10 +403,34 @@
                 } else {
                     $('#a2enmod').hide();
                 }
+
+                if ($(this).data('callback')) {
+
+                    var parts = $(this).data('callback').split('.'), method = window;
+
+                    $(parts).each(function () {
+                        method = method[this];
+                    });
+
+                    method($(this));
+                }
             
 
             });
         });
+
+        var installer = {
+            php : function (data) {
+                
+                if ($('#nginx:checked').length > 0 && $('#php:checked').length > 0) {
+                    $('#php5-fpm-install').show();
+                } else {
+                    $('#php5-fpm-install').hide();
+                }
+                
+            }
+        }
+
         </script>
 
     </body>
