@@ -209,6 +209,10 @@
                                 <label class="checkbox">
                                    g++ <input data-parts="misc-g-install" type="checkbox">
                                 </label>
+
+                                <label class="checkbox">
+                                   s3cmd <input data-parts="s3cmd-source,misc-s3cmd-install" type="checkbox">
+                                </label>
                             </p>
                         </div>
                     </div>
@@ -238,6 +242,12 @@
                                 # Update MongoDB Sources<br />
                                 apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10<br />
                                 echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list<br /><br />
+                            </div>
+
+                            <div id="s3cmd-source" style="display:none">
+                                # Update s3cmd Sources<br/>
+                                wget -O- -q http://s3tools.org/repo/deb-all/stable/s3tools.key | sudo apt-key add -<br />
+                                wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list<br /><br />
                             </div>
 
                             # Update apt<br />
@@ -337,6 +347,10 @@
 
                             <span id="misc-g-install" style="display:none">
                                  g++
+                            </span>
+
+                            <span id="misc-s3cmd-install" style="display:none">
+                                s3cmd
                             </span>
 
                             <!-- Python Packages -->
