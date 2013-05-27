@@ -18,29 +18,6 @@
 
         <style>
 
-        .ribbon {
-            background-color: #a00;
-            overflow: hidden;
-            position: absolute;
-            left: -3em;
-            top: 2.5em;
-            -moz-transform: rotate(-45deg);
-            -webkit-transform: rotate(-45deg);
-            -moz-box-shadow: 0 0 1em #888;
-            -webkit-box-shadow: 0 0 1em #888;
-        }
-        .ribbon a {
-            border: 1px solid #faa;
-            color: #fff;
-            display: block;
-            font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
-            margin: 0.05em 0 0.075em 0;
-            padding: 0.5em 3.5em;
-            text-align: center;
-            text-decoration: none;
-            text-shadow: 0 0 0.5em #444;
-        }
-
         .navbar .brand {
            transition: color .25s ease-in-out;
            -moz-transition: color .25s ease-in-out;
@@ -393,9 +370,7 @@
             </div>
         </div>
 
-        <div class="ribbon">
-            <a href="https://bitbucket.org/Scottymeuk/installer" rel="me">Fork me on BitBucket</a>
-        </div>
+        <a href="https://github.com/Scottymeuk/installer"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js " type="text/javascript"></script>
 
