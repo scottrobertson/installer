@@ -46,7 +46,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <div class="container">
-                    <div class="pull-right">
+                    <div>
                         <a class="brand" href="/"><i class="icon-cloud-download"></i> Installer</a>
                     </div>
                 </div>
