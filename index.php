@@ -190,6 +190,10 @@
                                 <label class="checkbox">
                                    s3cmd <input data-parts="s3cmd-source,misc-s3cmd-install" type="checkbox">
                                 </label>
+
+                                <label class="checkbox">
+                                   Composer <input data-parts="composer-source,misc-composer-install" name="composer" type="checkbox">
+                                </label>
                             </p>
                         </div>
                     </div>
@@ -227,11 +231,19 @@
                                 wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list<br /><br />
                             </div>
 
-                            # Update apt<br />
-                            apt-get update<br /><br />
+                            <div id="composer-source" style="display:none">
+                                # Update composer Sources<br/>
+                                curl -sS https://getcomposer.org/installer | php<br />
+                                mv composer.phar /usr/local/bin/composer
+                            </div>
 
-                            # Run the install<br />
-                            apt-get install -y
+                            <div id="apt-get" style="display:inline-block">
+                                # Update apt<br />
+                                apt-get update<br /><br />
+
+                                # Run the install<br />
+                                apt-get install -y
+                            </div>
                             <!-- Server Software -->
                             <span id="nginx-install" style="display:none">
                                  nginx
@@ -399,8 +411,14 @@
                 });
 
                 if (this.checked) {
+                    if (this.getAttribute('name') !== 'composer')
+                        $('#apt-get').show();
+
                     selectedInstalls++;
                 } else {
+                     if (this.getAttribute('name') !== 'composer' && selectedInstalls > 0)
+                        $('#apt-get').hide();
+
                     selectedInstalls--;
                 }
 
