@@ -235,6 +235,7 @@
                                 # Update composer Sources<br/>
                                 curl -sS https://getcomposer.org/installer | php<br />
                                 mv composer.phar /usr/local/bin/composer
+                                chmod +x /usr/local/bin/composer
                             </div>
 
                             <div id="apt-get" style="display:inline-block">
