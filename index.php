@@ -11,35 +11,11 @@
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" type="text/css">
 
+        <link href="css/app.css" rel="stylesheet" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
-        <style>
-
-        .navbar .brand {
-           transition: color .25s ease-in-out;
-           -moz-transition: color .25s ease-in-out;
-           -webkit-transition: color .25s ease-in-out;
-        }
-
-        .navbar .brand:hover {
-            color: #f09609;
-        }
-
-        .navbar .navbar-inner {
-            border-radius: 0px
-        }
-
-        #installer {
-            background:#fff;
-            padding:10px;
-            border-radius:5px;
-            box-shadow:inset 0 0 1px #000000;
-        }
-
-        </style>
 
     </head>
     <body>
