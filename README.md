@@ -3,13 +3,13 @@ Ubuntu Installer
 
 A tool to help with quickly setting up Ubuntu.
 
-You can view a demo here: http://installer.scottymeuk.co.uk
+You can view a demo here: http://scottrobertson.github.io/installer/
 
 Options
 -
-- Ubuntu Versions: 
-  - 12.04 
-  - 12.10 
+- Ubuntu Versions:
+  - 12.04
+  - 12.10
   - 13.04 (coming soon)
 - Web Server
   - Apache
