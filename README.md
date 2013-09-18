@@ -53,33 +53,14 @@ To add packages to existing sections you will need to add the html label in the 
 ####Example
 
     <label class="checkbox">
-        Apache2 <input name="apache2" data-parts="apache2" data-property="webServers" type="checkbox">
+       Apache2 <input name="apache2" data-parts="apache2" data-trigger="apacheModules" data-container="#aptget" type="checkbox">
     </label>
 
 Each input needs some data attributes which specify the package information.
 
-####Attributes
+####Data attributes
 
-* `property` - The javascript class property this package belongs to
 * `parts` - The install command for this package
-
-####Javascript
-
-When you have added your html label you will need to add the javascript object to the corrent section in the installer class.
-
-    this.webServers = {
-        apache2 : {
-            update      : true,
-            name        : 'apache2',
-            trigger     : '#apacheModules',
-            container   : '#aptget'
-        }
-    }
-
-####Properties
-
-* `update` - Does this package require apt-get update?
-* `name` - The name of this package
 * `trigger` - If an element needs to be shown after this is selected
 * `container` - Which container to add the install command to
 * `sources` - The element where the extra sources are held
@@ -88,6 +69,7 @@ When you have added your html label you will need to add the javascript object t
 
 * `#aptget`
 * `a2enmod`
+* `pip`
 
 ####Sources
 
