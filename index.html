@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>
+            Installer
+        </title>
+
+        <link href="//netdna.bootstrapcdn.com/bootswatch/2.1.1/united/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+        <link href="css/app.css" rel="stylesheet" />
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+        <script>
+        var Installer = function() {
+
+            this.version = '';
+
+            this.webServers = {
+                apache2 : {
+                    update      : true,
+                    name        : 'apache2',
+                    trigger     : '#apacheModules',
+                    container   : '#aptget'
+                },
+                nginx : {
+                    update      : true,
+                    name        : 'nginx',
+                    sources     : '#nginx-sources',
+                    container   : '#aptget'
+                }
+            }
+
+            this.apacheModules = {
+                rewrite : {
+                    name        : 'rewrite',
+                    container   : '#a2enmod'
+                },
+                deflate : {
+                    name        : 'deflate',
+                    container   : '#a2enmod'
+                },
+                headers : {
+                    name        : 'headers',
+                    container   : '#a2enmod'
+                },
+                expires : {
+                    name        : 'expires',
+                    container   : '#a2enmod'
+                }
+            }
+
+            this.serverSoftware = {
+                php : {
+                    name        : 'php',
+                    container   : '#aptget',
+                    trigger     : '#phpExtensions'
+                },
+                python : {
+                    name        : 'python',
+                    container   : '#aptget'
+                },
+                mysql : {
+                    name        : 'python',
+                    container   : '#aptget'
+                },
+                memcached : {
+                    name        : 'python',
+                    container   : '#aptget'
+                },
+                mongodb : {
+                    name        : 'mongodb',
+                    container   : '#aptget',
+                    sources     : '#mongodb-sources'
+                }
+            }
+
+            this.phpExtensions = {
+                apc : {
+                    name        : 'apc',
+                    container   : '#aptget'
+                },
+                mysql : {
+                    name        : 'mysql',
+                    container   : '#aptget'
+                },
+                memcache : {
+                    name        : 'memcache',
+                    container   : '#aptget'
+                },
+                mongodb : {
+                    name        : 'mongodb',
+                    container   : '#aptget'
+                },
+                gd : {
+                    name        : 'gd',
+                    container   : '#aptget'
+                },
+                curl : {
+                    name        : 'curl',
+                    container   : '#aptget'
+                }
+            }
+
+            this.versionControl = {
+                git : {
+                    name        : 'git',
+                    container   : '#aptget'
+                },
+                mercurial : {
+                    name        : 'mercurial',
+                    container   : '#aptget'
+                },
+                subversion :  {
+                    name        : 'subversion',
+                    container   : '#aptget'
+                }
+            }
+
+            this.miscellaneous = {
+                zip : {
+                    name            : 'zip',
+                    container       : '#aptget'
+                },
+                make : {
+                    name            : 'make',
+                    container       : '#aptget'
+                },
+                curl : {
+                    name            : 'curl',
+                    container       : '#aptget'
+                },
+                gplusplus : {
+                    name            : 'gplusplus',
+                    container       : '#aptget'
+                },
+                s3cmd : {
+                    name            : 's3cmd',
+                    container       : '#aptget',
+                    sources         : '#s3cmd-sources'
+                },
+                composer : {
+                    name            : 'composer',
+                    container       : '#aptget',
+                    sources         : '#composer-sources'
+                }
+            }
+
+        }
+
+        $(function() {
+
+            var installer = new Installer();
+
+            $('[name="version"]').on('click', function() {
+                $('#options').show();
+            }); 
+
+            $('input[type="checkbox"]').on('click', function() {
+                var checked = $(this).is(':checked');
+
+                var parts = $(this).data('parts');
+                var property = $(this).parent().parent().attr('id');
+                var section = installer[property][$(this).attr('name')];
+                var name = section.name;
+
+                if (installer[property].hasOwnProperty(name)) {
+
+                    if (checked) {
+
+                        if (parts) {
+                            $(section.container).append(' <span class="' + name + '">' + parts +  '</span>').show();
+                        }
+
+                        if (section.trigger) {
+                            $(section.trigger).show();
+                        }
+
+                        if (section.sources) {
+                            $('#sources').append('<p class="' + name + '">' + $(section.sources).html() + '</p>').show();
+                        }
+
+                    } else {
+                        if (parts) {
+                            $(section.container + ' span.' + name).remove();
+                        }
+
+                        if (!$(section.container + ' span').length) {
+                            $(section.container).hide();
+                        }
+
+                        if (!$(section.container + ' span').length) {
+                            $(section.container).hide();
+                        }
+
+                        if (section.trigger) {
+                            $(section.trigger).hide();
+                        }
+
+                        if (section.sources) {
+                            $('#sources p.' + name).remove();
+                        }
+                        
+                    }
+
+                    $('#installer').show();
+                }   
+            }); 
+
+        }); 
+        </script>
+
+    </head>
+    <body>
+        <!-- SOUCRES -->
+        <div class="hide">
+            <div id="nginx-sources">
+            # Nginx Sources<br />
+                wget http://nginx.org/keys/nginx_signing.key<br />
+                apt-key add nginx_signing.key<br />
+                echo "deb http://nginx.org/packages/ubuntu/ quantal nginx<br />
+                deb-src http://nginx.org/packages/ubuntu/ quantal nginx" > /etc/apt/sources.list.d/nginx.list<br />
+            </div>
+            <div id="mongodb-sources">
+            # MongoDB Sources<br />
+                apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10<br />
+                echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list<br />
+            </div>
+            <div id="composer-sources">
+            # Composer Sources<br />
+                curl -sS https://getcomposer.org/installer | php<br />
+                mv composer.phar /usr/local/bin/composer<br />
+            </div>
+            <div id="s3cmd-sources">
+            # S3cmd Sources<br />
+                wget -O- -q http://s3tools.org/repo/deb-all/stable/s3tools.key | sudo apt-key add -<br />
+                wget -O/etc/apt/sources.list.d/s3tools.list http://s3tools.org/repo/deb-all/stable/s3tools.list<br />
+            </div>
+        </div>
+
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div>
+                        <a class="brand" href="/">
+                            <em class="icon-cloud-download"></em> 
+                            Installer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <p>
+                            <b>Ubuntu Version</b>
+                        </p>
+                        <div>
+                            <p class="radio">
+                                <input onclick="installer.version='12.04'" type="radio" name="version" value="12.04"> 12.04
+                            </p>
+                            <p class="radio">
+                                <input onclick="installer.version='12.10'" type="radio" name="version" value="12.10"> 12.10
+                            </p>
+                        </div>
+
+                        <div id="options" class="hide">
+
+                            <div id="webServers">
+                                <b>Web Server</b>
+                                <label class="checkbox">
+                                   Apache2 <input name="apache2" data-parts="apache2" data-property="webServers" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Nginx <input name="nginx" data-parts="nginx" data-property="webServers" type="checkbox">
+                                </label>
+                            </div>
+
+                            <div id="apacheModules" style="display:none">
+                                <b>Apache Modules</b>
+
+                                <label class="checkbox">
+                                   Rewrite <input name="rewrite" data-property="apacheModules" data-parts="rewrite" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Deflate <input name="deflate" data-property="apacheModules" data-parts="deflate" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Headers <input name="headers" data-property="apacheModules" data-parts="headers" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Expires <input name="expires" data-property="apacheModules" data-parts="expires" type="checkbox">
+                                </label>
+                            </div>
+
+                            <div id="serverSoftware">
+                                <b>Server Software</b>
+                                <label class="checkbox">
+                                   PHP <input id="php" name="php" data-property="serverSoftware" data-parts="php5" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Python <input name="python" data-property="serverSoftware" data-parts="python python-pip" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   MySQL Server <input name="mysql" data-property="serverSoftware" data-parts="mysql-server" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Memcached <input name="memcached" data-property="serverSoftware" data-parts="memcached" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   MongoDB <input name="mongodb" data-property="serverSoftware" data-parts="mongodb-10gen" type="checkbox">
+                                </label>
+                            </div>
+
+                            <div id="versionControl">
+                                <b>Version Control</b>
+                                <label class="checkbox">
+                                   Git <input name="git" data-parts="git" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   SVN <input name="subversion" data-parts="subversion" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Mercurial/HG <input name="mercurial" data-parts="mercurial" type="checkbox">
+                                </label>
+                            </div>
+
+                            <p id="phpExtensions" style="display:none">
+                                <b>PHP Extensions</b>
+
+                                <label class="checkbox">
+                                   APC <input name="apc" data-parts="php-apc" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   MySQL <input name="mysql" data-parts="php5-mysql" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Memcache <input name="memcache" data-parts="php5-memcache" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   MongoDB <input name="mongodb" data-parts="php5-mongodb" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   GD <input name="gd" data-parts="php5-gd" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Curl <input name="curl" data-parts="php5-curl" type="checkbox">
+                                </label>
+                            </p>
+
+                            <p id="python-packages" style="display:none">
+                                <b>Python Packages</b>
+
+                                <label class="checkbox">
+                                   virtualenv <input data-parts="python-virtualenv-install" type="checkbox">
+                                </label>
+                            </p>
+
+                            <p id="miscellaneous">
+                                <b>Miscellaneous</b>
+                                <label class="checkbox">
+                                   Zip <input name="zip" data-parts="zip" type="checkbox">
+                                </label>
+                                <label class="checkbox">
+                                   Make <input name="make" data-parts="make" type="checkbox">
+                                </label>
+                                <label class="checkbox">
+                                   Curl <input name="curl" data-parts="curl" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   g++ <input name="gplusplus" data-parts="g++" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   s3cmd <input name="s3cmd" data-parts="s3cmd" type="checkbox">
+                                </label>
+
+                                <label class="checkbox">
+                                   Composer <input name="composer" type="checkbox">
+                                </label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span9">
+                    <div class="well">
+
+                        <div id="none_selected">
+                            <h1 class="lead">Installer</h1>
+                            <p>
+                                Easily install all the software you need on your Ubuntu server. To get started, please select your ubuntu version.
+                            </p>
+
+                        </div>
+
+                        <div id="installer" class="hide">
+                            <div id="sources" class="hide"></div>
+                            <div id="aptupdate" class="hide">
+                                <p># Update</p>
+                                apt-get update
+                            </div>
+                            <div id="aptget" class="hide">
+                                <p># Install packages</p>
+                                apt-get install -y
+                            </div>
+                            <div id="a2enmod" class="hide">
+                                <p># Apache Modules</p>
+                                a2enmod
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://github.com/Scottymeuk/installer"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    </body>
+</html>
