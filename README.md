@@ -39,9 +39,9 @@ Options
   - s3cmd
 
 Contributing
--
+--
 - Fork
+- Create a feature branch
 - Make Changes
-- Test
-- Update README.md
+- Test & Update Docs
 - Pull Request
