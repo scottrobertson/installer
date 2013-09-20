@@ -16,14 +16,14 @@ Options
   - Nginx
 - Server Software
   - PHP
-    - APC
-    - MySQL
-    - Memcache
-    - MongoDB
-    - GD
-    - Curl
+      - APC
+      - MySQL
+      - Memcache
+      - MongoDB
+      - GD
+      - Curl
   - Python
-    - virtualenv
+      - virtualenv
   - Mysql
   - Memcached
   - MongoDB
